@@ -1,5 +1,5 @@
 number_dict = {
-        "zero" : "0",
+        #"zero" : "0",
         "one":"1",
         "two":"2",
         "three":"3",
@@ -13,7 +13,7 @@ number_dict = {
 
 def replace_first(line):
     position_dict = {
-        line.find("zero") : "zero",
+        #line.find("zero") : "zero",
         line.find("one") : "one",
         line.find("two") : "two",
         line.find("three") : "three",
@@ -36,7 +36,7 @@ def replace_first(line):
 
 def replace_last(line):
     r_position_dict = {
-        line.rfind("zero") : "zero",
+        #line.rfind("zero") : "zero",
         line.rfind("one") : "one",
         line.rfind("two") : "two",
         line.rfind("three") : "three",
@@ -66,19 +66,19 @@ def replace_last_occurence(string, old, new):
 
 
 
-file = open('input.txt', 'r')
+file = open('CalibrationValuesA.txt', 'r')
 sum = 0
 lines = file.readlines()
 for line in lines:
-    first_line = replace_first(line)
-    for i in range(0,len(first_line)):
-        if first_line[i] in ["0","1","2","3","4","5","6","7","8","9"]:
-            first_digit = first_line[i]
+    front_reading = replace_first(line)
+    for i in range(0,len(front_reading)):
+        if front_reading[i] in ["1","2","3","4","5","6","7","8","9"]:
+            first_digit = front_reading[i]
             break
-    second_line = replace_last(line)
-    for i in range(len(second_line)-1,-1,-1):
-        if second_line[i] in ["0","1","2","3","4","5","6","7","8","9"]:
-            second_digit = second_line[i]
+    backwards_reading = replace_last(line)
+    for i in range(len(backwards_reading)-1,-1,-1):
+        if backwards_reading[i] in ["1","2","3","4","5","6","7","8","9"]:
+            second_digit = backwards_reading[i]
             break
     print(first_digit + second_digit)
     sum += int(first_digit + second_digit)
