@@ -66,7 +66,7 @@ def replace_last_occurence(string, old, new):
 
 
 
-file = open('CalibrationValuesA.txt', 'r')
+file = open('input.txt', 'r')
 sum = 0
 lines = file.readlines()
 for line in lines:
