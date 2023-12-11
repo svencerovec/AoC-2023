@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    file = open("input.txt", "r")
+    file = open("test_input.txt", "r")
     lines = file.readlines()
     start = []
     for i in range(len(lines)):
@@ -9,21 +9,21 @@ if __name__ == "__main__":
                 start.append(i)
                 start.append(j)
     not_end = True
-    list = lines
+    positions= lines
     position = start
     visited = []
     while not_end:
         not_end = False
         possible_moves = []
-        current_char = list[position[0]][position[1]] 
+        current_char =positions[position[0]][position[1]] 
         if current_char == "S":
-            if position[0]-1 >= 0 and list[position[0]-1][position[1]] in ["|", "F", "7"]:
+            if position[0]-1 >= 0 and positions[position[0]-1][position[1]] in ["|", "F", "7"]:
                 possible_moves.append([position[0]-1, position[1]])
-            if position[0]+1 < len(list) and list[position[0]+1][position[1]] in ["|", "J", "L"]:
+            if position[0]+1 < len(positions) and positions[position[0]+1][position[1]] in ["|", "J", "L"]:
                 possible_moves.append([position[0]+1, position[1]])
-            if position[1]-1 >= 0 and list[position[0]][position[1]-1] in ["-", "F", "L"]:
+            if position[1]-1 >= 0 and positions[position[0]][position[1]-1] in ["-", "F", "L"]:
                 possible_moves.append([position[0], position[1]-1])
-            if position[1]+1 < len(list[0]) and list[position[0]][position[1]+1] in ["-", "J", "7"]:
+            if position[1]+1 < len(positions[0]) and positions[position[0]][position[1]+1] in ["-", "J", "7"]:
                 possible_moves.append([position[0], position[1]+1])
         if current_char == "F":
             possible_moves = [[position[0] + 1 ,position[1]],[position[0], position[1] + 1]]
@@ -39,18 +39,28 @@ if __name__ == "__main__":
             possible_moves = [[position[0] - 1, position[1]], [position[0], position[1] - 1]]
         for possible_move in possible_moves:
             if possible_move not in visited:
-                if possible_move[0] >= 0 and possible_move[0] < len(list):
-                    if possible_move[1] >= 0 and possible_move[1] < len(list[0]):
+                if possible_move[0] >= 0 and possible_move[0] < len(positions):
+                    if possible_move[1] >= 0 and possible_move[1] < len(positions[0]):
                         visited.append(possible_move)
                         position = possible_move
                         not_end = True
                         break
     print(visited)
     print(len(visited)/2)
-    corners = []
-    if visited[0][0] - visited[1][0] != 0:
-        last_move = [visited[0][0] - visited[1][0], 0]
-    else:
-        if visited[0]
-    for i in range(len(visited)):
+    
+    marked = []
+    for line in lines:
+        t = []
+        for c in line:
+            t.append(c)
+        marked.append(t)
+    #for x,y in visited:
+    #    marked[x][y] = 'X'
+
+    for i, line in enumerate(marked):
+        for j, char in enumerate(line):
+            if [i,j] not in visited:
+                marked[i][j] = "O"
+    for line in marked:
+        print(line)
 
